@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import * as actions from 'actions';
+import * as userActions from '../actions/user';
 
 class App extends Component {
   // renderButton() {
@@ -33,6 +32,7 @@ class App extends Component {
   render() {
     return (
         <div>
+            hello
           {/*{this.renderHeader()}*/}
           {/*<Route path="/post" component={CommentBox} />*/}
           {/*<Route path="/" exact component={CommentList} />*/}
@@ -41,8 +41,4 @@ class App extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return { user: state.user };
-}
-
-export default connect(mapStateToProps, actions)(App);
+export default App;
