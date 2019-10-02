@@ -22,6 +22,7 @@ const mutation = new GraphQLObjectType({
             args: {
                 firstName: { type: new GraphQLNonNull(GraphQLString) },
                 lastName: { type: new GraphQLNonNull(GraphQLString) },
+                email: { type: new GraphQLNonNull(GraphQLString) },
                 alias: { type: GraphQLString },
                 location: { type: GraphQLString },
                 headliner: { type: inputSongType }
@@ -45,9 +46,10 @@ const mutation = new GraphQLObjectType({
                 id: { type: new GraphQLNonNull(GraphQLString)},
                 firstName: { type: GraphQLString },
                 lastName: { type: GraphQLString },
+                email: { type: GraphQLString },
                 alias: { type: GraphQLString },
                 location: { type: GraphQLString },
-                headliner: { type: inputSongType } //might not need this here
+                headliner: { type: inputSongType } //might not need this here. because there is a separate mutation for this field
             },
             resolve(parentValue, args){
                 return new Promise((resolve, reject) => {

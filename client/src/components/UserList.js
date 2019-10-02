@@ -18,33 +18,31 @@ class UserList extends Component {
     renderUsers() {
         return this.props.data.users.map( user => {
             return (
-                    <List>
-                        <ListItem>
-                            <ListItemAvatar>
-                                <Avatar>
-                                    <AccountCircle/>
-                                </Avatar>
-                            </ListItemAvatar>
-                            <ListItemText
-                                primary={user.firstName}
-                            />
-                            <ListItemSecondaryAction>
-                                <IconButton edge="end" onClick={this.openMenu}>
-                                    <Menu/>
-                                </IconButton>
-                            </ListItemSecondaryAction>
-                        </ListItem>
-                    </List>
+                <ListItem>
+                    <ListItemAvatar>
+                        <Avatar>
+                            <AccountCircle/>
+                        </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                        primary={user.firstName}
+                    />
+                    <ListItemSecondaryAction>
+                        <IconButton edge="end" onClick={this.openMenu}>
+                            <Menu/>
+                        </IconButton>
+                    </ListItemSecondaryAction>
+                </ListItem>
             );
         });
     }
     render(){
         if(this.props.data.loading){return <div>Loading...</div>}
         return(
-            <Grid container direction="column" justify="center" spacing={1}>
-                <Grid item xs={12} md={12}>
+            <Grid item xs={12} md={12}>
+                <List>
                     {this.renderUsers()}
-                </Grid>
+                </List>
             </Grid>
         );
     }
@@ -57,10 +55,7 @@ const query = gql`
             firstName,
             lastName,
             alias,
-            headliner {
-                title,
-                url
-            }
+            email
         }
     }
 `;

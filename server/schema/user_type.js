@@ -11,6 +11,7 @@ const UserType = new GraphQLObjectType({
         loggedIn: { type: GraphQLBoolean },
         firstName: { type: GraphQLString },
         lastName: { type: GraphQLString },
+        email: { type: GraphQLString },
         location: { type: GraphQLString },
         alias: { type: GraphQLString },
         headliner: { type: SongType },
