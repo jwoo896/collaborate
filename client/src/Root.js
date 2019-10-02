@@ -1,15 +1,29 @@
-import React from 'react';
-// import { Provider } from 'react-redux';
-// import { createStore, applyMiddleware } from 'redux';
-// import reduxPromise from 'redux-promise';
-import reducers from 'reducers';
+import React  from 'react';
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from 'react-apollo';
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Button from "@material-ui/core/Button";
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import UserList from "./components/UserList";
 
-export default ({ children, initialState = {} }) => {
-    // const store = createStore(
-    //     reducers,
-    //     initialState,
-    //     applyMiddleware(reduxPromise)
-    // );
+const client = new ApolloClient();
 
-    // return <Provider store={store}>{children}</Provider>;
-};
+const Root = () => {
+    return (
+        <ApolloProvider client={client}>
+            <Router>
+                <AppBar position="sticky" color="secondary">
+                    <Toolbar>
+                        <Button color="inherit"><Link to="/" style={{textDecoration: 'none', color: '#fff'}}>Login</Link></Button>
+                        <Button color="inherit"><Link to="/users" style={{textDecoration: 'none', color: '#fff'}}>Users</Link></Button>
+                    </Toolbar>
+                </AppBar>
+                <Route path="/" exact component={UserList}/>
+                <Route path="/users" component={UserList}/>
+            </Router>
+        </ApolloProvider>
+    )
+}
+
+export default Root;

@@ -30,7 +30,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: 'client/public/index.html'
+            template: './client/public/index.html'
         })
     ]
 };

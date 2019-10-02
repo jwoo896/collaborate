@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
+    loggedIn: { type: Boolean },
     firstName: { type: String },
     lastName: { type: String },
     location: { type: String },

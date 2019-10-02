@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const graphql = require('graphql');
 const { GraphQLObjectType, GraphQLString, GraphQLID } = graphql;
-const UserType = require('../schema/user_type');
 const Song = mongoose.model('song');
 
 const SongType = new GraphQLObjectType({
@@ -11,7 +10,7 @@ const SongType = new GraphQLObjectType({
         title: { type: GraphQLString },
         url: { type: GraphQLString },
         user: {
-            type: UserType,
+            type: require('./user_type'),
             resolve(parentValue){
                 return Song.findUser(parentValue.id);
             }

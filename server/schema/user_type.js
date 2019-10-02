@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const graphql = require('graphql');
-const { GraphQLObjectType, GraphQLString, GraphQLList, GraphQLID } = graphql;
+const { GraphQLObjectType, GraphQLString, GraphQLList, GraphQLID, GraphQLBoolean } = graphql;
 const SongType = require('../schema/song_type');
 const User = mongoose.model('user');
 
@@ -8,6 +8,7 @@ const UserType = new GraphQLObjectType({
     name: 'User',
     fields: () => ({
         id: { type: GraphQLID },
+        loggedIn: { type: GraphQLBoolean },
         firstName: { type: GraphQLString },
         lastName: { type: GraphQLString },
         location: { type: GraphQLString },

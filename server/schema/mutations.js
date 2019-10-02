@@ -1,11 +1,18 @@
 const graphql = require('graphql');
-const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLNonNull } = graphql;
+const { GraphQLObjectType, GraphQLInputObjectType, GraphQLString, GraphQLID, GraphQLNonNull } = graphql;
 const mongoose = require('mongoose');
 const Song = mongoose.model('song');
 const User = mongoose.model('user');
 const SongType = require('./song_type');
 const UserType = require('./user_type');
 
+const inputSongType = new GraphQLInputObjectType({
+    name: 'inputSongType',
+    fields: {
+        title: { type: GraphQLString },
+        url: { type: GraphQLString }
+    }
+});
 
 const mutation = new GraphQLObjectType({
     name: "Mutation",
@@ -17,7 +24,7 @@ const mutation = new GraphQLObjectType({
                 lastName: { type: new GraphQLNonNull(GraphQLString) },
                 alias: { type: GraphQLString },
                 location: { type: GraphQLString },
-                headliner: { type: SongType }
+                headliner: { type: inputSongType }
             },
             resolve(parentValue, args) {
                 return (new User(args)).save();
@@ -40,7 +47,7 @@ const mutation = new GraphQLObjectType({
                 lastName: { type: GraphQLString },
                 alias: { type: GraphQLString },
                 location: { type: GraphQLString },
-                headliner: { type: SongType } //might not need this here
+                headliner: { type: inputSongType } //might not need this here
             },
             resolve(parentValue, args){
                 return new Promise((resolve, reject) => {
@@ -71,7 +78,7 @@ const mutation = new GraphQLObjectType({
             type: UserType,
             args: {
                 id: { type: new GraphQLNonNull(GraphQLID) },
-                headliner: { type: new GraphQLNonNull(SongType) }
+                headliner: { type: new GraphQLNonNull(inputSongType) }
             },
             resolve(parentValue, { id, headliner }) {
               return new Promise((resolve, reject) => {
@@ -91,7 +98,10 @@ const mutation = new GraphQLObjectType({
             args: {
                 title: { type: new GraphQLNonNull(GraphQLString) },
                 url: { type: new GraphQLNonNull(GraphQLString) },
-                user: { type: new GraphQLNonNull(UserType)}
+                user: { type: new GraphQLNonNull(GraphQLID)}
+            },
+            resolve(parentValue, args) {
+                return (new Song(args)).save();
             }
         },
         deleteSong: {

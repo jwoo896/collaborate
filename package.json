@@ -9,6 +9,8 @@
     "@babel/preset-env": "^7.6.2",
     "@babel/preset-react": "^7.0.0",
     "@material-ui/core": "^4.4.3",
+    "@material-ui/icons": "^4.4.3",
+    "apollo-boost": "^0.4.4",
     "axios": "^0.19.0",
     "babel-loader": "^8.0.6",
     "babel-plugin-relay": "^6.0.0",
@@ -20,17 +22,23 @@
     "express-graphql": "^0.9.0",
     "graphql": "^14.5.8",
     "graphql-relay": "^0.6.0",
+    "graphql-tag": "^2.10.1",
     "html-webpack-plugin": "^3.2.0",
     "lodash": "^4.17.15",
     "mongoose": "^5.7.3",
     "morgan": "^1.9.1",
     "nodemon": "^1.19.3",
     "react": "^16.10.1",
+    "react-apollo": "^3.1.1",
     "react-dom": "^16.10.1",
+    "react-relay": "^6.0.0",
+    "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.1.2",
+    "relay": "^0.8.0-1",
     "relay-compiler": "^6.0.0",
     "relay-config": "^6.0.0",
+    "relay-runtime": "^6.0.0",
     "style-loader": "^1.0.0",
     "webpack": "4.40.2",
     "webpack-dev-middleware": "^3.7.2"
@@ -41,7 +49,8 @@
     "build": "../node_modules/.bin/react-scripts build",
     "test": "../node_modules/.bin/react-scripts test",
     "eject": "../node_modules/.bin/react-scripts eject",
-    "dev": "nodemon index.js --ignore client"
+    "dev": "nodemon index.js --ignore client",
+    "relay": "relay-compiler --src ./ --schema ./server/schema/schema.graphql --extensions=js --extensions=jsx"
   },
   "eslintConfig": {
     "extends": "react-app"

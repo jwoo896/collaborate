@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const graphql = require('graphql');
-const { GraphQLObjectType, GraphQLID, GraphQLNonNull } = graphql;
+const { GraphQLObjectType, GraphQLID, GraphQLNonNull, GraphQLList } = graphql;
 const UserType = require('./user_type');
 const User = mongoose.model('user');
 const SongType = require('./song_type');
@@ -15,7 +15,14 @@ const RootQuery = new GraphQLObjectType({
             resolve(parentValue, { id }) {
                 return User.findById(id);
             }
-        }
+        },
+        users: {
+            type: new GraphQLList(UserType),
+            resolve(parentValue){
+                return User.find({});
+            }
+        },
+
     })
 });
 
