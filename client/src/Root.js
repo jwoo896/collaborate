@@ -1,6 +1,6 @@
 import React  from 'react';
-import ApolloClient from 'apollo-boost';
-import { ApolloProvider } from 'react-apollo';
+import {ApolloClient, InMemoryCache, HttpLink }from 'apollo-boost';
+import { ApolloProvider } from '@apollo/react-hooks';
 import Grid from "@material-ui/core/Grid";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -9,7 +9,12 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import UserList from "./components/UserList";
 import CreateUser from "./components/CreateUser";
 
-const client = new ApolloClient();
+const client = new ApolloClient({
+    link: new HttpLink({ uri: 'http://localhost:4000/graphql'}),
+    cache: new InMemoryCache({
+        dataIdFromObject: object => object.id || null
+    })
+});
 
 const Root = () => {
     return (

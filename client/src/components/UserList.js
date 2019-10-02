@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import gql from 'graphql-tag';
+import fetchUsers from "../queries/fetchUsers";
 import { graphql } from "react-apollo";
 import {
     List,
@@ -48,16 +48,4 @@ class UserList extends Component {
     }
 }
 
-const query = gql`
-    {
-        users {
-            id,
-            firstName,
-            lastName,
-            alias,
-            email
-        }
-    }
-`;
-
-export default graphql(query)(UserList);
+export default graphql(fetchUsers)(UserList);

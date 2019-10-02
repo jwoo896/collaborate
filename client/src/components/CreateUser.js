@@ -1,30 +1,11 @@
 import React  from 'react';
 import { Grid, TextField, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import gql from 'graphql-tag';
-import { useMutation } from "react-apollo";
+import createUser from "../queries/createUser";
+import fetchUsers from "../queries/fetchUsers";
+import { useHistory } from "react-router-dom";
+import { useMutation } from "@apollo/react-hooks";
 
-const createUserMutation = gql`
-    mutation AddUser(
-                $firstName: String!,
-                $lastName: String!,
-                $email: String!,
-                $alias: String,
-                $location: String
-            ){
-                addUser(
-                    firstName: $firstName,
-                    lastName: $lastName,
-                    email: $email,
-                    alias: $alias,
-                    location: $location
-                ){
-                    id,
-                    firstName,
-                    lastName,
-                    alias
-                }
-    }`;
 
 const useStyles = makeStyles(theme => ({
     container: {
@@ -39,14 +20,15 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function CreateUser() {
+    let history = useHistory();
     const classes = useStyles();
     const [values, setValues] = React.useState({
         'First Name': '',
         'Last Name': '',
         'Alias': '',
+        'City': '',
         'Email': '',
-        'Password': '',
-        'City': ''
+        'Password': ''
     });
 
     const renderTextFields = () => {
@@ -94,12 +76,14 @@ export default function CreateUser() {
                 alias: values['Alias'],
                 email: values['Email'],
                 location: values['City']
-            }});
-        // setValues({ ...values, }) TODO: reset form values
-        console.log('submitted');
+            }}).then(() => {
+                history.push('/users');
+        });
     };
 
-    const [ newUser, { data } ] = useMutation(createUserMutation);
+    const [ newUser ] = useMutation(createUser, {
+        refetchQueries: [{query: fetchUsers}]
+        });
 
     return (
         <Grid item>
