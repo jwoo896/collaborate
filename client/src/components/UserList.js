@@ -18,15 +18,14 @@ class UserList extends Component {
     renderUsers() {
         return this.props.data.users.map( user => {
             return (
-                <ListItem>
+                <ListItem divider="true">
                     <ListItemAvatar>
                         <Avatar>
                             <AccountCircle/>
                         </Avatar>
+                        {user.firstName}
                     </ListItemAvatar>
-                    <ListItemText
-                        primary={user.firstName}
-                    />
+                    <ListItemText primary={<audio controls></audio>}/>
                     <ListItemSecondaryAction>
                         <IconButton edge="end" onClick={this.openMenu}>
                             <Menu/>
@@ -39,7 +38,7 @@ class UserList extends Component {
     render(){
         if(this.props.data.loading){return <div>Loading...</div>}
         return(
-            <Grid item xs={12} md={12}>
+            <Grid item xs={10}>
                 <List>
                     {this.renderUsers()}
                 </List>

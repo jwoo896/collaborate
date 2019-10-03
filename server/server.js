@@ -6,6 +6,8 @@ const morgan = require('morgan');
 const MongoClient = require('mongodb').MongoClient;
 const bodyParser = require('body-parser');
 const schema = require('./schema/schema');
+const cors = require('cors');
+const sign_s3 = require('./controllers/aws');
 
 const app = express();
 
@@ -30,12 +32,16 @@ mongoose.connection
     .once('open', () => console.log('Connected to MongoLab instance.'))
     .on('error', error => console.log('Error connecting to MongoLab:', error));
 
+app.use(cors());
 app.use(morgan('combined')); //morgan is a logging framework. mostly used for debugging
+app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use('/graphql', expressGraphQL({
     schema,
     graphiql: true
 }));
+
+app.use('/sign_s3', sign_s3.sign_s3);
 
 const webpackMiddleware = require('webpack-dev-middleware');
 const webpack = require('webpack');

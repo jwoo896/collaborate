@@ -82,7 +82,7 @@ export default function CreateUser() {
     };
 
     const [ newUser ] = useMutation(createUser, {
-        refetchQueries: [{query: fetchUsers}]
+        refetchQueries: [{query: fetchUsers}] //can take varaiables: {} as a property as well
         });
 
     return (
