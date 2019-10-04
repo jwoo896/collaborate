@@ -25,7 +25,7 @@ class UserList extends Component {
                         </Avatar>
                         {user.firstName}
                     </ListItemAvatar>
-                    <ListItemText primary={<audio controls></audio>}/>
+                    <ListItemText primary={<audio controls src="https://collaborate-songs.s3-us-west-1.amazonaws.com/hitchhiker+"></audio>}/>
                     <ListItemSecondaryAction>
                         <IconButton edge="end" onClick={this.openMenu}>
                             <Menu/>

@@ -18,6 +18,7 @@ const UserType = new GraphQLObjectType({
         songs: {
             type: new GraphQLList(SongType),
             resolve(parentValue){
+                console.log(User.findSongs(parentValue.id));
                 return User.findSongs(parentValue.id);
             }
         }

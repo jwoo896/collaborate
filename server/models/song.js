@@ -10,16 +10,16 @@ const SongSchema = new Schema({
     }
 });
 
-SongSchema.statics.addSong = function(id) {
+SongSchema.statics.addSongToUser = function(id) {
     const User = mongoose.model('user');
 
-    return this.findById(id)
-        .then(song => {
-            const user = User.findById(song.user.id);
-            user.songs.push(song);
-
-            return Promise.all([user.save(), song.save()])
-                .then(([song]) => song);
+    return this.findById(id) //'this' refers to SongSchema
+        .then(song => { //instance of Song
+            return User.findById(song.user) //Search UserSchema
+                .then(user => { //instance of User
+                    user.songs.push(song);
+                    return user.save();
+                });
         });
 }
 

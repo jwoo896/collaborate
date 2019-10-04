@@ -3,7 +3,6 @@ const models = require('./models');
 const expressGraphQL = require('express-graphql');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
-const MongoClient = require('mongodb').MongoClient;
 const bodyParser = require('body-parser');
 const schema = require('./schema/schema');
 const cors = require('cors');
@@ -20,7 +19,6 @@ mongoose.set('useUnifiedTopology', true);
 
 // Replace with your mongoLab URI
 const MONGO_URI = "mongodb+srv://jwoo896:1Asxdcfv@cluster0-s2iyg.mongodb.net/test?retryWrites=true&w=majority";
-const uri = "mongodb+srv://jwoo896:1Asxdcfv@cluster0-s2iyg.mongodb.net/test?retryWrites=true&w=majority";
 
 if (!MONGO_URI) {
     throw new Error('You must provide a MongoLab URI');

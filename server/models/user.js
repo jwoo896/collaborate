@@ -25,5 +25,4 @@ UserSchema.statics.findSongs = function(id) {
         .then(user => user.songs);
 }
 
-
 mongoose.model('user', UserSchema);

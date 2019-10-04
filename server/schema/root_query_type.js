@@ -22,6 +22,12 @@ const RootQuery = new GraphQLObjectType({
                 return User.find({});
             }
         },
+        songs: {
+            type: new GraphQLList(SongType),
+            resolve(parentValue){
+                return Song.find({});
+            }
+        }
 
     })
 });

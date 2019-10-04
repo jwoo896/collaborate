@@ -100,10 +100,19 @@ const mutation = new GraphQLObjectType({
             args: {
                 title: { type: new GraphQLNonNull(GraphQLString) },
                 url: { type: new GraphQLNonNull(GraphQLString) },
-                user: { type: new GraphQLNonNull(GraphQLID)}
+                user: { type: new GraphQLNonNull(GraphQLID) }
             },
             resolve(parentValue, args) {
                 return (new Song(args)).save();
+            }
+        },
+        addSongToUser: {
+          type: SongType,
+          args: {
+              songId: { type: new GraphQLNonNull(GraphQLID) }
+          },
+            resolve(parentValue, { songId }){
+              return Song.addSongToUser(songId);
             }
         },
         deleteSong: {
