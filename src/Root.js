@@ -9,7 +9,7 @@ import CreateUser from "./components/CreateUser";
 import AddSong from "./components/AddSong";
 
 const client = new ApolloClient({
-    link: new HttpLink({ uri: 'http://localhost:4000/graphql'}),
+    link: new HttpLink({ uri: 'http://downtheblock-server.herokuapp.com/graphql'}),
     cache: new InMemoryCache({
         dataIdFromObject: object => `${object.__typename}${object.id}` || null
     })

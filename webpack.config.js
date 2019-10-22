@@ -3,7 +3,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: './client/src/index.js',
+    entry: 'index.js',
     output: {
         path: '/',
         filename: 'bundle.js'
@@ -23,14 +23,11 @@ module.exports = {
     },
     resolve: {
         modules: [path.resolve(__dirname, "collaborate"), 'node_modules'],
-        extensions: ['.js', '.jsx', '.json'],
-        alias: {
-            reducers: path.resolve(__dirname, './client/src/reducers')
-        }
+        extensions: ['.js', '.jsx', '.json']
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './client/public/index.html'
+            template: '../public/index.html'
         })
     ]
 };
