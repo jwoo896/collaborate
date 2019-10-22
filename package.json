@@ -1,9 +1,6 @@
 {
   "name": "collaborate",
   "version": "0.1.0",
-  "engines": {
-    "node": "10.16.3"
-  },
   "main": "index.js",
   "private": true,
   "dependencies": {
@@ -47,10 +44,9 @@
   "scripts": {
     "client-install": "npm install --prefix client",
     "client": "./node_modules/.bin/react-scripts start",
-    "start": "react-scripts start",
-    "build": "nodemon index.js --ignore client",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "build": "../node_modules/.bin/react-scripts build",
+    "test": "../node_modules/.bin/react-scripts test",
+    "eject": "../node_modules/.bin/react-scripts eject",
     "dev": "nodemon index.js --ignore client",
     "relay": "relay-compiler --src ./ --schema ./server/schema/schema.graphql --extensions=js --extensions=jsx"
   },
