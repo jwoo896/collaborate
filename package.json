@@ -1,6 +1,9 @@
 {
   "name": "collaborate",
   "version": "0.1.0",
+  "engines": {
+    "node": "10.16.3"
+  },
   "main": "index.js",
   "private": true,
   "dependencies": {
