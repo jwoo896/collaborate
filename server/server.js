@@ -34,6 +34,8 @@ app.use(cors());
 app.use(morgan('combined')); //morgan is a logging framework. mostly used for debugging
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
+
+//app.use('/path', someMiddleWare()); tells express app what middleware to use when '/path' is used
 app.use('/graphql', expressGraphQL({
     schema,
     graphiql: true
