@@ -13,12 +13,25 @@ import {
 } from "@material-ui/core";
 import { Menu, AccountCircle } from "@material-ui/icons";
 
+import Geocode from 'react-geocode';
+
+// Geocode.setApiKey(`AIzaSyBN_Lz6CafuTmiJyVqE6JnNeXwwn3gXGVQ`);
+// Get latidude & longitude from address.
+// Geocode.fromAddress("3635 25th st San Francisco").then(
+//     response => {
+//         const { lat, lng } = response.results[0].geometry.location;
+//         console.log(lat, lng);
+//     },
+//     error => {
+//         console.error(error);
+//     }
+// );
 class UserList extends Component {
 
     renderUsers() {
         return this.props.data.users.map( user => {
             return (
-                <ListItem divider="true">
+                <ListItem key={user.id}>
                     <ListItemAvatar>
                         <Avatar>
                             <AccountCircle/>
@@ -35,7 +48,22 @@ class UserList extends Component {
             );
         });
     }
+
+    // testGeoCode() {
+        // Geocode.setApiKey(`AIzaSyBN_Lz6CafuTmiJyVqE6JnNeXwwn3gXGVQ`);
+// Get latidude & longitude from address.
+//         Geocode.fromAddress("3635 25th st San Francisco").then(
+//             response => {
+//                 const { lat, lng } = response.results[0].geometry.location;
+//                 console.log(lat, lng);
+//             },
+//             error => {
+//                 console.error(error);
+//             }
+//         );
+//     }
     render(){
+        // this.testGeoCode();
         if(this.props.data.loading){return <div>Loading...</div>}
         return(
             <Grid item xs={10}>
